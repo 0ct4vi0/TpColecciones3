@@ -1,10 +1,9 @@
 package org.example;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.HashMap;
+
 public class ComponentesCPU {
     private String componentes;
     private String marca;
+    private String nombre;
     private int cantidad;
     private double precio;
 
@@ -15,20 +14,17 @@ public class ComponentesCPU {
         this.precio=precio;
     }
 
+    public  double calcularCosto() {
+        return cantidad * precio;
+    }
+
     public String getComponentes() {
         return componentes;
     }
 
-    public void setComponentes(String componentes) {
-        this.componentes = componentes;
-    }
 
     public String getMarca() {
         return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
     }
 
     public int getCantidad() {
@@ -43,7 +39,12 @@ public class ComponentesCPU {
         return precio;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

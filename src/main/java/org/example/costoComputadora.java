@@ -4,32 +4,47 @@ import java.util.Scanner;
 
 public class costoComputadora  {
     public static void main(String[] args) {
-        HashSet<ComponentesCPU> compCPU= new HashSet<>();
-        System.out.println("vamos a cargar los datos de la computadora");
-        cargarComputadora(compCPU);
-
-    }
-
-    public static void cargarComputadora(HashSet<ComponentesCPU> compCPU) {
+//        HashSet<ComponentesCPU> compCPU= new HashSet<>();
+        System.out.println("vamos a cargar los datos de la computadora:");
         Scanner sc = new Scanner(System.in);
-
+        String respuesta;
 
         System.out.println("ingrese la marca de la computadora: ");
         String marca = sc.nextLine();
 
-        System.out.println(" ingrese el modelo de la computadora: ");
+        System.out.println("ingrese el modelo de la computadora: ");
         String modelo = sc.nextLine();
 
-        System.out.println(" ingrese la canridad de componentes del CPU");
-        int cantidad = sc.nextInt();
-        System.out.println(" ingrese el precio por producto ");
-        double precio = 0;
-        for (int i = 0; i < cantidad; i++) {
-            System.out.println("precio del producto " + i);
-            precio = sc.nextDouble();
-        }
-        ComponentesCPU componentes = new ComponentesCPU(marca, modelo, cantidad, precio);
-        ;
+        Computadora computadora = new Computadora(marca, modelo);
+
+        do {
+            System.out.println("-------------------------------------");
+            System.out.println("ingrese el nombre del componente: ");
+            String nombre = sc.nextLine();
+            System.out.println("ingrese la marca del componente: ");
+            String marcaC = sc.nextLine();
+            System.out.println("ingrese la canridad de componentes que desea comprar: ");
+            int cantidad = sc.nextInt();
+
+            System.out.println("ingrese el precio de los productos:  ");
+            double precio = 0;
+            for (int i = 0; i < cantidad; i++) {
+                System.out.println("-----------------------------");
+                System.out.println("precio del producto: ");
+                precio = sc.nextDouble();
+                System.out.println();
+
+                ComponentesCPU nuevoComponente = new ComponentesCPU(marcaC,nombre,cantidad,precio);
+                computadora.agregarComponente(nuevoComponente);
+            }
+            computadora.mostrarInfo();
+
+            System.out.println("Desea cargar los datos de otra compu? S/N");
+            respuesta = sc.nextLine();
+            sc.nextLine();
+        } while (respuesta.equals("s") || respuesta.equals("S"));
+
+        System.out.println("gracias por usar el programa");
     }
 }
 //        HashMap<String, Long> agenda = new HashMap<>();

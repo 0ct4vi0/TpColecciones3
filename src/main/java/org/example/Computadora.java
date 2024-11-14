@@ -5,12 +5,12 @@ import java.util.HashMap;
 public class Computadora {
     private String marca;
     private String modelo;
-    private HashSet<ComponentesCPU> compCPU;
+    private HashSet<ComponentesCPU> componentes;
 
     public Computadora(String marca, String modelo) {
         this.marca = marca;
         this.modelo = modelo;
-        this.compCPU = new HashSet<>();
+        this.componentes = new HashSet<>();
     }
 
     public String getMarca() {
@@ -30,10 +30,48 @@ public class Computadora {
     }
 
     public HashSet<ComponentesCPU> getCompCPU() {
-        return compCPU;
+        return componentes;
     }
 
     public void setCompCPU(HashSet<ComponentesCPU> compCPU) {
-        this.compCPU = compCPU;
+        this.componentes = compCPU;
     }
+
+    public void  agregarComponente(ComponentesCPU componente){
+        componentes.add(componente);
+    }
+
+    public double CostoT() {
+        double costoTotal = 0;
+        for (ComponentesCPU c : componentes) {
+            costoTotal += c.calcularCosto();
+        }
+        return costoTotal;
+    }
+
+    public double PrecioV() {
+        double costoTotal = CostoT();
+        if (costoTotal < 50000) {
+            return costoTotal * 1.40;  // 40% de ganancia
+        } else {
+            return costoTotal * 1.30;  // 30% de ganancia
+        }
+    }
+
+
+    public void mostrarInfo() {
+        System.out.println("Marca: " + marca +
+                "\t" + " | Modelo: " + modelo);
+        System.out.println("---------------------------");
+        System.out.println("Componentes:");
+        System.out.println("Componente:  " + "   Marca:  " + "  Cantidad:  ");
+        for (ComponentesCPU c : componentes) {
+            System.out.println(c.getNombre()+" "+c.getMarca()+" "+c.getCantidad());
+        }
+        double costoTotal = CostoT();
+        double precioVenta = PrecioV();
+        System.out.println("Costo total de la computadora: " + costoTotal);
+        System.out.println("Precio de venta sugerido: " + precioVenta);
+    }
+
 }
